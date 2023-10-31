@@ -1,5 +1,8 @@
 addEventListener('DOMContentLoaded', () => {
 
+const displayValue = [];
+
+
 
 const input = document.querySelector('.input');
 const operators = document.querySelector('.operators');
@@ -27,6 +30,39 @@ let bNum;
 let operator;
 
 console.log(operate(6, 7, "*"));
+
+
+display = document.querySelector('.display');
+
+// number buttons
+numBtns = document.querySelectorAll('.numBtn');
+
+numBtns.forEach( (e) => { 
+    e.addEventListener('click', () => {
+        displayValue.push(e.textContent);
+        display.textContent = displayValue.join("");
+        console.log(displayValue);
+    })
+});
+
+// operator buttons
+
+opBtns = document.querySelectorAll('.opBtns');
+
+opBtns.forEach( (e) => {
+        e.addEventListener('click', () => {
+            // to code
+            //on click, get the type of operator.
+            // if equals, then call relevant function, and insert value A, value B, etc etc into function
+            
+            // if operator is '+, -, *, or /' put the value of displayValue into a new variable, 'valueA'
+            // display the operator variable in a new line on the display
+            // break for new line in the display
+            // empty displayValue, in preparation for new entry.
+
+        })
+});
+
 
 
 
@@ -62,10 +98,5 @@ function operate(aNum, bNum, operator) {
         return divide(aNum, bNum);
 };
 
-
-console.log(add(2, 6),
-subtract(9, 1),
-multiply(2, 4),
-divide(16, 2))
 
 });
