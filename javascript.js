@@ -1,8 +1,12 @@
 addEventListener('DOMContentLoaded', () => {
 
 // clear calculator
-    let clrBtn = document.querySelector('.clrBtn');
-    clrBtn.addEventListener('click', () => { clearCalc();});  
+let clrBtn = document.querySelector('.clrBtn');
+clrBtn.addEventListener('click', () => { clearCalc();});  
+    
+let delBtn = document.querySelector('.delBtn');
+delBtn.addEventListener('click', () => { del(numArray);}); 
+
 
 
 let displayValue = [];
@@ -84,13 +88,12 @@ opBtns.forEach( (e) => {
                     displayTally.textContent = `${numArray[0]} ${firstOperator} ${numArray[1]} =`;
                     displayWorking.textContent = result;} 
                 }
+                numberActive = false;
+                console.log('number Active', numberActive);
             })
-
-            
-            numberActive = false;
-
            
-            
+           
+                  
         })
           
             // if equals, then call relevant function, and insert value A, value B, etc etc into function
@@ -100,8 +103,21 @@ opBtns.forEach( (e) => {
             // break for new line in the display
             // empty displayValue, in preparation for new entry.
 
-        
+            // del button
 
+        
+function del() {
+    if (numberActive === false) {
+        console.log('exit del function')
+        return;
+    } else {
+    console.log(displayValue);
+    displayValue.pop();
+    console.log(displayValue);
+    displayWorking.textContent = parseInt(displayValue.join(""));
+    }
+   
+}
 
 function clearCalc() {
     console.log('cleared');

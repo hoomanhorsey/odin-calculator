@@ -13,10 +13,16 @@ body {
 }
 
 .displayMain {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     flex:auto;
-    border-style: solid;
+    /* border-style: solid; */
     border-width: 1px;
     border-color: black;
+    border-radius: 1% 1% 0 0  ;
+
     width: 650px;
     height: 300px;
     font-size: 60px;
@@ -28,22 +34,32 @@ body {
 }
 
 .displayTally {
+
     height: 60px;
+    width: 450px;
+
     padding: 30px 60px;
+    background-color: #2C3E50;
 
 }
 .displayWorking {
     height: 60px;
     padding: 30px 60px;
+    width: 450px;
+
+    background-color: #2C3E50;
+
 
 }
 
 .input {
     flex:auto;
 
-    border-style: solid;
+    /* border-style: solid; */
     border-width: 1px;
     border-color: black;    
+    border-radius: 0 0 1% 1%;
+
     width: 650px;
     font-family: 'Courier New', Courier, monospace;
     font-weight: 900;
@@ -107,12 +123,14 @@ body {
 }
 .adminBtn {
     background-color: paleturquoise;
+    border-radius: 10%;
+
 }
 
 
 .optBtn {
     background-color: darkgrey;
-    color: lime;
+    color: pink;
     border-radius: 10%;
 
     
