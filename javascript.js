@@ -1,7 +1,8 @@
 addEventListener('DOMContentLoaded', () => {
 
-let clrBtn = document.querySelector('.clrBtn');
-clrBtn.addEventListener('click', () => { clearCalc();});  
+// clear calculator
+    let clrBtn = document.querySelector('.clrBtn');
+    clrBtn.addEventListener('click', () => { clearCalc();});  
 
 
 let displayValue = [];
