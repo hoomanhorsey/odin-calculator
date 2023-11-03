@@ -7,14 +7,13 @@ clrBtn.addEventListener('click', () => { clearCalc();});
 let delBtn = document.querySelector('.delBtn');
 delBtn.addEventListener('click', () => { del(numArray);}); 
 
+let displayValue = [];  // array to store displayed value
+let numArray = []; // array to store saved numbers for operation
 
-
-let displayValue = [];
-let numArray = [];
-
-let result;
-let operator;
-let numberActive;
+let result; 
+let firstOperator; // stores selected operator, once first number selected
+let operator;  // stores active operator
+let numberActive; // flags if number entering is active. 
 
 const input = document.querySelector('.input');
 const operators = document.querySelector('.operators');
@@ -28,12 +27,17 @@ displayWorking.textContent = 0;
 numBtns = document.querySelectorAll('.numBtn');
 numBtns.forEach( (e) => { 
     e.addEventListener('click', () => {
+        if ((displayValue.includes(".")) && (e.textContent === ".")) {
+            return;  // limited to use of 1 decimal point
+        } else if ( displayValue.length >10 ) {
+            return;  // limits input lenght
+        } else {
         displayValue.push(e.textContent);
         displayWorking.textContent = displayValue.join("");
         numberActive = true;
+        }
     })
 });
-let firstOperator;
 
 // listener for operator buttons
 opBtns = document.querySelectorAll('.optBtn');
@@ -42,127 +46,88 @@ opBtns.forEach( (e) => {
 
             operator = e.textContent;
 
-            if ((operator === "=") && (displayWorking.textContent === "0")) {
-                displayTally.textContent = "0" + operator;
-                displayWorking.textContent = 0;} 
+            // Several conditions to determine state when operators are entered   
+
+            // No numbers have been entered
+                // no number stored or operator selected, so defaults to 0
+                // operator has already been selected, so now being reselected
+            if (!numberActive) {
+                if (!numArray[0]) {
+                    displayTally.textContent = 0 + " " + operator;               
+                } else { firstOperator = operator;
+                displayTally.textContent = numArray[0] + " " + firstOperator; } }
       
-            else if (!numberActive) {
-                console.log('the firstOperator was: ', firstOperator)
+            // first num has been entered, but not stored
+            else if ((numberActive) && (!numArray[0])) {
                 firstOperator = operator;
-                displayTally.textContent = numArray[0] + " " + firstOperator;               
-                console.log("But now it has been replaced by: ", operator)
-            }
-
-            else if ((numberActive) &&  (!numArray[0])) {
-                firstOperator = operator;
-                numArray.push(parseInt(displayValue.join("")));
-                console.log('numArray', numArray);
+                numArray.push(parseFloat(displayValue.join("")));
                 displayValue = [];
-                console.log(displayValue);
-                displayTally.textContent = numArray[0] + " " + firstOperator;
-            }
+                displayTally.textContent = numArray[0] + " " + firstOperator; }
 
+            // first number is stored, number has been entered 
+                // if operator is != '=' 
+                // if operator is '='    
             else if ((numberActive) && (numArray[0])) {
-
-                numArray.push(parseInt(displayValue.join("")));
-
-                console.log('numArray[1]', numArray[1])
-
+                numArray.push(parseFloat(displayValue.join("")));
                 if (operator != "=") {
-                    console.log('last one', numArray[0], firstOperator, numArray[1]);
                     result = operate(numArray[0], numArray[1], firstOperator);
-                    displayTally.textContent = result + " " + firstOperator;
-                    displayValue = [];
+                    displayTally.textContent =  `${result} ${firstOperator}`;
                     numArray = [];
                     numArray[0] = result;
                     firstOperator = operator;
                 } else {
-
-
-                    if ((firstOperator === "/") && (parseInt(numArray[1]) === 0)) {alert(danger)};
-
-                    console.log("Using equals", numArray[0], firstOperator, numArray[1]);
-
                     result = operate(numArray[0], numArray[1], firstOperator);
-
                     displayTally.textContent = `${numArray[0]} ${firstOperator} ${numArray[1]} =`;
-                    displayWorking.textContent = result;} 
+                    displayWorking.textContent = result;
+                    numArray = []; 
+                    } 
+                displayValue = [];
                 }
                 numberActive = false;
-                console.log('number Active', numberActive);
-            })
-           
-           
-                  
+            })          
         })
-          
-            // if equals, then call relevant function, and insert value A, value B, etc etc into function
-            
-            // if operator is '+, -, *, or /' put the value of displayValue into a new variable, 'valueA'
-            // display the operator variable in a new line on the display
-            // break for new line in the display
-            // empty displayValue, in preparation for new entry.
-
-            // del button
-
-        
+              
 function del() {
-    if (numberActive === false) {
-        console.log('exit del function')
+    if ((numberActive === false) || (displayWorking.textContent === "0")  )  {
         return;
-    } else {
-    console.log(displayValue);
+    } else if (!displayValue[1]){ displayWorking.textContent = 0;
+         } else {
     displayValue.pop();
-    console.log(displayValue);
-    displayWorking.textContent = parseInt(displayValue.join(""));
-    }
-   
-}
+    displayWorking.textContent = parseFloat(displayValue.join(""));
+    }}
 
 function clearCalc() {
-    console.log('cleared');
     displayValue = [];
     numArray = [];
     operator = false;
     displayTally.textContent = "";
-    displayWorking.textContent = 0;    
-};
+    displayWorking.textContent = 0;};
 
-function add(a, b) {
-    return a + b;
-};
-
-function subtract(a, b) {
-    return a - b;
-};
-
-function multiply(a, b) {
-    return a * b;
-};
-
-function divide(a, b) {
-    return a / b;  
-};
+function add(a, b) { return a + b;};
+function subtract(a, b) { return a - b;};
+function multiply(a, b) { return a * b;};
+function divide(a, b) { return a / b; };
 
 function operate(aNum, bNum, operator) {
     
     if (operator === "+"){
-        return add(aNum, bNum);
+        result = add(aNum, bNum);
+        return parseFloat(result.toFixed(8));
     }    
     if (operator === "-"){
-        return subtract(aNum, bNum)};
-
-    if (operator === "*"){
-        return multiply(aNum, bNum)};
-
-    if (operator === "/"){
-        console.log('bNum', bNum);
-        if (bNum === 0) {
-            alert('cannot');
-        } else {
-        return divide(aNum, bNum);
+        result = subtract(aNum, bNum);
+        return parseFloat(result.toFixed(8));
         }
-    };
-
-};
+    if (operator === "*"){
+        result = multiply(aNum, bNum);
+        return parseFloat(result.toFixed(8));
+        };
+    if (operator === "/"){
+        if (bNum === 0) {
+            return "Divide by 0? LOL!";
+        } else {
+        result = divide(aNum, bNum);
+        return parseFloat(result.toFixed(8));       
+        }};
+    }
 });

@@ -1,14 +1,19 @@
 body {
     display:flex;
     justify-content: center;
+    align-items: center;
 }
-.calculatorBody {
-    display: flex;
 
+.header {
+    height: 100px;
+}
+.calcBody {
+    display: flex;
     flex: auto;
+
     flex-direction: column;
     width: 800px;
-    height: 800px;
+    height: 950px;
     align-items: center;
 }
 
@@ -21,10 +26,10 @@ body {
     /* border-style: solid; */
     border-width: 1px;
     border-color: black;
-    border-radius: 1% 1% 0 0  ;
+    border-radius: 1% 1% 0 0;
 
-    width: 650px;
-    height: 300px;
+    width: 770px;
+    height: 600px;
     font-size: 60px;
     text-align: right;
 
@@ -35,22 +40,28 @@ body {
 
 .displayTally {
 
-    height: 60px;
-    width: 450px;
+    height: 100px;
+    width: 570px;
 
+    border-radius: 2% 2% 0 0;
+
+    
     padding: 30px 60px;
     background-color: #2C3E50;
 
 }
 .displayWorking {
-    height: 60px;
-    padding: 30px 60px;
-    width: 450px;
+    height: 30px;
+    padding: 50px 60px;
+    width: 570px;
+
+    border-radius: 0 0 2% 2%;
 
     background-color: #2C3E50;
 
 
 }
+
 
 .input {
     flex:auto;
@@ -60,7 +71,7 @@ body {
     border-color: black;    
     border-radius: 0 0 1% 1%;
 
-    width: 650px;
+    width: 770px;
     font-family: 'Courier New', Courier, monospace;
     font-weight: 900;
     background-color: lightgray;
@@ -139,5 +150,22 @@ body {
 .btnRow {
     flex: auto;
     display: flex;
+
+}
+
+.lastRow {
+    display: flex;
+    
+}
+.lastRowBtnZero {
+    flex-grow: 2;
+
+}
+.lastRowBtnPeriod {
+    flex-grow: 2;
+
+}
+.lastRowBtnEq {
+    flex-grow: 4;
 
 }
