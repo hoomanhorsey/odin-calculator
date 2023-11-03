@@ -10,7 +10,6 @@ body {
 .calcBody {
     display: flex;
     flex: auto;
-
     flex-direction: column;
     width: 800px;
     height: 950px;
@@ -27,26 +26,19 @@ body {
     border-width: 1px;
     border-color: black;
     border-radius: 1% 1% 0 0;
-
     width: 770px;
     height: 600px;
     font-size: 60px;
     text-align: right;
-
-
     background-color: black;
     color: aqua;
 }
 
 .displayTally {
-
     height: 100px;
     width: 570px;
-
     border-radius: 2% 2% 0 0;
-
-    
-    padding: 30px 60px;
+       padding: 30px 60px;
     background-color: #2C3E50;
 
 }
@@ -54,23 +46,17 @@ body {
     height: 30px;
     padding: 50px 60px;
     width: 570px;
-
     border-radius: 0 0 2% 2%;
-
     background-color: #2C3E50;
-
-
 }
 
 
 .input {
     flex:auto;
-
     /* border-style: solid; */
     border-width: 1px;
     border-color: black;    
     border-radius: 0 0 1% 1%;
-
     width: 770px;
     font-family: 'Courier New', Courier, monospace;
     font-weight: 900;
@@ -79,18 +65,13 @@ body {
 }
 .operators {
     flex:auto;
-
     display: flex;
     flex-direction: row;
-
-
     border-style: solid;
     border-width: 1px;
     border-color: black;
-
     width: 600px;
     height: 100px
-
 }
 
 .numbers {
@@ -98,13 +79,10 @@ body {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-
     border-style: solid;
     border-width: 1px;
     border-color: black;
-
     width: 600px;
-
 }
 
 
@@ -117,8 +95,6 @@ body {
     height: 50px;
     margin: 20px;
     padding: 15px 20px;
-
-
     font-size: 30px;
 }
 
@@ -127,45 +103,36 @@ body {
     background-color: black;
     color: white;
     border-radius: 10%;
-
 }
 
 .clrBtn {
 }
+
 .adminBtn {
     background-color: paleturquoise;
     border-radius: 10%;
-
 }
-
 
 .optBtn {
     background-color: darkgrey;
     color: pink;
-    border-radius: 10%;
-
-    
+    border-radius: 10%;   
 }
 
 .btnRow {
     flex: auto;
-    display: flex;
-
+    display
 }
 
 .lastRow {
     display: flex;
-    
 }
 .lastRowBtnZero {
     flex-grow: 2;
-
 }
 .lastRowBtnPeriod {
     flex-grow: 2;
-
 }
 .lastRowBtnEq {
     flex-grow: 4;
-
 }
